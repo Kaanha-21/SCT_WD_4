@@ -1,0 +1,192 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Orbitron", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top, #00fff0, transparent 40%),
+    radial-gradient(circle at bottom, #7f00ff, transparent 45%),
+    linear-gradient(135deg, #020014, #000000);
+  background-size: 200% 200%;
+  animation: alienBg 14s ease infinite;
+  color: #eaffff;
+}
+
+@keyframes alienBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ===== APP CORE ===== */
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===== ALIEN CONSOLE ===== */
+.container {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 240, 0.5),
+    0 0 80px rgba(127, 0, 255, 0.35);
+  animation: floatAlien 6s ease-in-out infinite;
+}
+
+@keyframes floatAlien {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===== TITLE ===== */
+h1 {
+  text-align: center;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  color: #00fff0;
+  text-shadow:
+    0 0 10px #00fff0,
+    0 0 30px #7f00ff;
+}
+
+/* ===== FORM ===== */
+.todo-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.todo-form input {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 240, 0.4);
+  border-radius: 10px;
+  padding: 10px;
+  color: #eaffff;
+  outline: none;
+}
+
+.todo-form input:focus {
+  box-shadow: 0 0 12px rgba(0, 255, 240, 0.7);
+}
+
+.todo-form button {
+  background: linear-gradient(135deg, #00fff0, #7f00ff);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== TASK LIST ===== */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== TASK CELL ===== */
+.task {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 12px rgba(0, 255, 240, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.task::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0, 255, 240, 0.25), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.task:hover::after {
+  opacity: 1;
+}
+
+.task.completed {
+  opacity: 0.5;
+}
+
+.task.completed .title {
+  text-decoration: line-through;
+}
+
+/* ===== TASK INFO ===== */
+.task-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-info small {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* ===== ACTIONS ===== */
+.task-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.task-actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.done {
+  background: #00ff6a;
+  color: black;
+}
+
+.edit {
+  background: #ffc107;
+}
+
+.delete {
+  background: #ff3b3b;
+  color: white;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .todo-form {
+    grid-template-columns: 1fr;
+  }
+}
